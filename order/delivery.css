@@ -1,0 +1,702 @@
+/* Base Styles */
+:root {
+    --primary-color: #008cba;
+    --primary-hover: #007bb5;
+    --secondary-color: #f7f7f7;
+    --border-color: #e0e0e0;
+    --text-color: #333;
+    --text-light: #666;
+    --success-color: #4caf50;
+    --danger-color: #f44336;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  /* 增加container的最大宽度 */
+  .container {
+    max-width: 1400px; /* 从1200px增加到1400px */
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* 添加更宽的容器类 */
+  .container-wide {
+    max-width: 1600px; /* 比普通容器更宽 */
+  }
+  
+  /* Checkout Steps - Modified to be above the title */
+  .checkout-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .step.active .step-number {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .step-label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .step-connector {
+    height: 2px;
+    background-color: #e0e0e0;
+    width: 80px;
+    margin: 0 10px;
+  }
+  
+  /* 修改checkout-layout的网格布局比例，增加主内容区域的宽度 */
+  .checkout-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 从1fr 350px改为2fr 1fr，增加左侧内容区域的比例 */
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  
+  @media (max-width: 900px) {
+    .checkout-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* 修改checkout-main样式，增加宽度 */
+  .checkout-main {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 40px; /* 增加内边距 */
+    width: 100%; /* 确保使用全宽 */
+    max-width: 100%; /* 移除可能的最大宽度限制 */
+  }
+  
+  .checkout-sidebar {
+    align-self: start;
+    position: sticky;
+    top: 20px;
+  }
+  
+  .section-title h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+  }
+  
+  /* Delivery Options */
+  .delivery-options,
+  .address-section,
+  .delivery-notes {
+    margin-bottom: 40px;
+  }
+  
+  .delivery-options h2,
+  .address-section h2,
+  .delivery-notes h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .delivery-option-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 增加最小宽度 */
+    gap: 20px; /* 增加间距 */
+  }
+  
+  .delivery-option-card {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .delivery-option-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
+  
+  .delivery-option-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .delivery-option-card input[type="radio"]:checked + .card-content {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 140, 186, 0.05);
+  }
+  
+  .delivery-option-card .card-content {
+    display: flex;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+  }
+  
+  .delivery-icon {
+    margin-right: 15px;
+  }
+  
+  .delivery-icon img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .delivery-details h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .delivery-details p {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .delivery-price {
+    font-weight: bold;
+    margin-top: 5px !important;
+  }
+  
+  .delivery-price.free {
+    color: var(--success-color);
+  }
+  
+  /* Saved Addresses */
+  .saved-addresses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 增加最小宽度 */
+    gap: 20px; /* 增加间距 */
+    margin-bottom: 30px;
+  }
+  
+  .saved-address-card {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .saved-address-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+  }
+  
+  .saved-address-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .saved-address-card input[type="radio"]:checked + .card-content {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 140, 186, 0.05);
+  }
+  
+  .saved-address-card .card-content {
+    display: flex;
+    padding: 20px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+  }
+  
+  .address-icon {
+    margin-right: 15px;
+  }
+  
+  .address-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .address-details {
+    flex: 1;
+  }
+  
+  .address-details h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .address-details p {
+    color: var(--text-light);
+    margin: 0 0 3px 0;
+    font-size: 14px;
+  }
+  
+  .address-phone {
+    margin-top: 5px !important;
+  }
+  
+  .address-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 15px;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 5px;
+    transition: var(--transition);
+  }
+  
+  .btn-delete {
+    color: var(--danger-color);
+  }
+  
+  .btn-edit:hover,
+  .btn-delete:hover {
+    text-decoration: underline;
+  }
+  
+  .add-address-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 120px;
+    background-color: white;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .add-address-btn:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 140, 186, 0.05);
+  }
+  
+  .add-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    color: var(--primary-color);
+  }
+  
+  /* Form Styles */
+  .new-address-form {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .new-address-form h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  @media (max-width: 600px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 15px;
+    transition: var(--transition);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 140, 186, 0.2);
+  }
+  
+  .form-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  
+  /* Delivery Notes */
+  .delivery-notes textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 15px;
+    resize: vertical;
+    min-height: 100px;
+    transition: var(--transition);
+  }
+  
+  .delivery-notes textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 140, 186, 0.2);
+  }
+  
+  /* Checkout Actions */
+  .checkout-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Order Summary */
+  .order-summary {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .order-summary h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .order-items {
+    margin-bottom: 20px;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  .item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 15px;
+  }
+  
+  .item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .item-details {
+    flex: 1;
+  }
+  
+  .item-name {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .item-meta {
+    font-size: 14px;
+    color: var(--text-light);
+  }
+  
+  .item-price {
+    font-weight: 500;
+  }
+  
+  .summary-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 15px 0;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  
+  .summary-row.discount {
+    color: var(--success-color);
+  }
+  
+  .summary-row.total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  /* Promo Code */
+  .promo-code {
+    margin-top: 20px;
+  }
+  
+  .btn-collapse {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 10px 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .collapse-icon {
+    font-size: 18px;
+  }
+  
+  .collapse-content {
+    padding-top: 15px;
+  }
+  
+  .promo-input {
+    display: flex;
+  }
+  
+  .promo-input input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px 0 0 6px;
+    font-size: 14px;
+  }
+  
+  .btn-apply {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .btn-apply:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  /* Need Help Section */
+  .need-help {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+  }
+  
+  .need-help h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .need-help p {
+    margin: 10px 0;
+  }
+  
+  .need-help a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .need-help a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 确保在较大屏幕上内容区域有足够的宽度 */
+  @media (min-width: 1200px) {
+    .checkout-main-content {
+      min-width: 800px; /* 确保内容区域有足够的最小宽度 */
+    }
+  }
+  
+  /* 调整移动设备上的响应式布局 */
+  @media (max-width: 900px) {
+    .checkout-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .checkout-main-content {
+      min-width: auto; /* 在移动设备上重置最小宽度 */
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .checkout-steps {
+      flex-wrap: wrap;
+    }
+  
+    .delivery-option-cards,
+    .saved-addresses {
+      grid-template-columns: 1fr;
+    }
+  
+    .checkout-actions {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .checkout-main {
+      padding: 20px;
+    }
+  
+    .new-address-form {
+      padding: 20px;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .delivery-option-card,
+  .saved-address-card,
+  .new-address-form,
+  .order-summary {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .checkout-actions {
+    display: flex;
+    justify-content: flex-end; /* 将按钮推到右侧 */
+    margin-top: 2rem;
+}
+
+.checkout-actions .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.checkout-actions .btn-primary {
+    background-color: #28a745; /* 绿色按钮 */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-actions .btn-primary:hover {
+    background-color: #218838;
+}
